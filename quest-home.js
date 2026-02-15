@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   let isPanelExpanded = false;
@@ -92,8 +92,8 @@
       removeElements();
       return;
     }
-    
-    if (document.getElementById('DiscordQuestButton')) {return;}
+
+    if (document.getElementById('DiscordQuestButton')) { return; }
 
     const button = document.createElement('div');
     button.id = 'DiscordQuestButton';
@@ -169,7 +169,7 @@
     textLabel.textContent = message;
     button.style.background = bgColor;
     button.style.color = textColor;
-    
+
     if (invertIcons) {
       icon.style.filter = 'brightness(0) invert(1)';
       expandButton.style.filter = 'brightness(0) invert(1)';
@@ -185,7 +185,7 @@
   }
 
   function createExpandedPanel() {
-    if (document.getElementById('DiscordQuestPanel')) {return;}
+    if (document.getElementById('DiscordQuestPanel')) { return; }
 
     const panel = document.createElement('div');
     panel.id = 'DiscordQuestPanel';
@@ -194,11 +194,11 @@
     const questListContainer = document.createElement('div');
     questListContainer.id = 'DiscordQuestList';
     questListContainer.style.cssText = STYLES.questList;
-    
+
     if (questStateCache.size > 0) {
       questStateCache.forEach(quest => updateQuestItemUI(questListContainer, quest));
     }
-    
+
     panel.appendChild(questListContainer);
 
     const title = document.createElement('h3');
@@ -208,7 +208,7 @@
 
     const credit = document.createElement('p');
     credit.style.cssText = 'margin: 0; font-size: 14px; color: #ccc;';
-    credit.innerHTML = 'Credits by <a href="https://github.com/nvckai/Discord-Web-Auto-Quest-Extension" target="_blank" style="color: #fff; font-weight: bold; text-decoration: none;">6Together9</a>';
+    credit.innerHTML = 'Credits by <a href="https://github.com/adiiiexe/discord-quest-completer" target="_blank" style="color: #fff; font-weight: bold; text-decoration: none;">Adiiiexe</a>';
     panel.appendChild(credit);
 
     document.body.appendChild(panel);
@@ -223,7 +223,7 @@
       questStateCache.clear();
       data.data.forEach(q => questStateCache.set(q.id, q));
       if (listContainer) {
-        listContainer.innerHTML = ''; 
+        listContainer.innerHTML = '';
         data.data.forEach(q => updateQuestItemUI(listContainer, q));
       }
     } else if (data.type === 'QUEST_UPDATE') {
@@ -234,7 +234,7 @@
 
   function updateQuestItemUI(container, quest) {
     let item = document.getElementById(`quest-item-${quest.id}`);
-    
+
     if (!item) {
       item = document.createElement('div');
       item.id = `quest-item-${quest.id}`;
@@ -256,10 +256,10 @@
 
   function removeElements() {
     const existingButton = document.getElementById('DiscordQuestButton');
-    if (existingButton) {existingButton.remove();}
-    
+    if (existingButton) { existingButton.remove(); }
+
     const existingPanel = document.getElementById('DiscordQuestPanel');
-    if (existingPanel) {existingPanel.remove();}
+    if (existingPanel) { existingPanel.remove(); }
   }
 
   function togglePanel() {
@@ -267,12 +267,12 @@
     if (expandButtonReference) {
       expandButtonReference.style.transform = isPanelExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
     }
-    
+
     if (isPanelExpanded) {
       createExpandedPanel();
     } else {
       const panel = document.getElementById('DiscordQuestPanel');
-      if (panel) {panel.remove();}
+      if (panel) { panel.remove(); }
     }
   }
 
